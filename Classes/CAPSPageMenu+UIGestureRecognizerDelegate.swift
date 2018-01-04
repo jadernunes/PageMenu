@@ -25,13 +25,15 @@ extension CAPSPageMenu : UIGestureRecognizerDelegate {
                 var menuItemRightBound : CGFloat = menuItemWidths[0] + configuration.menuMargin + (configuration.menuMargin / 2)
                 
                 if !(tappedPoint.x >= menuItemLeftBound && tappedPoint.x <= menuItemRightBound) {
-                    for i in 1...controllerArray.count - 1 {
-                        menuItemLeftBound = menuItemRightBound + 1.0
-                        menuItemRightBound = menuItemLeftBound + menuItemWidths[i] + configuration.menuMargin
-                        
-                        if tappedPoint.x >= menuItemLeftBound && tappedPoint.x <= menuItemRightBound {
-                            itemIndex = i
-                            break
+                    if controllerArray.count > 1 {
+                        for i in 1...controllerArray.count - 1 {
+                            menuItemLeftBound = menuItemRightBound + 1.0
+                            menuItemRightBound = menuItemLeftBound + menuItemWidths[i] + configuration.menuMargin
+
+                            if tappedPoint.x >= menuItemLeftBound && tappedPoint.x <= menuItemRightBound {
+                                itemIndex = i
+                                break
+                            }
                         }
                     }
                 }
